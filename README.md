@@ -1,27 +1,27 @@
 # Aviationstack MCP Servers
 
-Model Context Protocol (MCP) server + client for the Aviationstack API. Python ve TypeScript implementasyonları.
+This repository contains two implementations of a Model Context Protocol (MCP) server for the Aviationstack API: one in **Python** and one in **TypeScript**, plus an MCP client.
 
-## Proje Yapısı
+## Project Structure
 
-- `python/`: Python MCP server (`mcp-python-sdk`)
-- `typescript/`: TypeScript MCP server + **MCP Client** (`@modelcontextprotocol/sdk`)
+- `python/`: Python MCP server using `mcp-python-sdk`
+- `typescript/`: TypeScript MCP server + **MCP Client** using `@modelcontextprotocol/sdk`
 
-## Özellikler
+## Features
 
 ### Tools (aviationstack_* prefix)
 
-| Tool | Açıklama |
-|------|----------|
-| `aviationstack_get_flights` | Uçuş verileri |
-| `aviationstack_get_airports` | Havaalanı araması |
-| `aviationstack_get_airlines` | Havayolu araması |
-| `aviationstack_get_routes` | Rota verileri |
-| `aviationstack_get_airplanes` | Uçak bilgisi |
+| Tool | Description |
+|------|-------------|
+| `aviationstack_get_flights` | Flight data |
+| `aviationstack_get_airports` | Airport search |
+| `aviationstack_get_airlines` | Airline search |
+| `aviationstack_get_routes` | Route data |
+| `aviationstack_get_airplanes` | Aircraft information |
 
 ### Output Schema (meta, items, raw)
 
-Başarılı yanıt:
+Success response:
 
 ```json
 {
@@ -31,7 +31,7 @@ Başarılı yanıt:
 }
 ```
 
-Hata:
+Error response:
 
 ```json
 { "error": { "provider": "aviationstack", "code": "...", "message": "..." } }
@@ -39,25 +39,25 @@ Hata:
 
 ### MCP Capabilities
 
-- **tools**: Tüm aviationstack araçları
-- **resources**: `aviationstack://docs` dokümantasyon
-- **prompts**: `aviationstack_flight_search` şablonu
+- **tools**: All aviationstack tools
+- **resources**: `aviationstack://docs` documentation
+- **prompts**: `aviationstack_flight_search` template
 
 ### Best Practices
 
-- **Prefix**: Tüm araçlar `aviationstack_` ile başlar
-- **API Key**: `AVIATIONSTACK_API_KEY` env değişkeni (asla hardcode edilmez)
-- **Error handling**: Yapısal hata payload'ı
-- **async/await**: Uyumlu async kullanımı
+- **Prefix**: All tools use `aviationstack_` prefix
+- **API Key**: `AVIATIONSTACK_API_KEY` environment variable (never hardcoded)
+- **Error handling**: Structured error payload
+- **async/await**: Consistent async usage
 
 ---
 
-## Kurulum ve Çalıştırma
+## Setup and Running
 
-### Gereksinimler
+### Prerequisites
 
 - [Aviationstack API Key](https://aviationstack.com/)
-- Python 3.10+ veya Node.js 18+
+- Python 3.10+ or Node.js 18+
 
 ### 1. API Key
 
@@ -82,11 +82,11 @@ npm run build
 npm start
 ```
 
-### 4. TypeScript MCP Client (Server'a Bağlanma)
+### 4. TypeScript MCP Client (Connecting to Server)
 
-Client, stdio transport ile server'a bağlanır ve tools/resources/prompts keşfeder.
+The client connects to the server via stdio transport and discovers tools, resources, and prompts.
 
-**TypeScript server ile:**
+**With TypeScript server:**
 
 ```bash
 cd typescript
@@ -95,7 +95,7 @@ export AVIATIONSTACK_API_KEY=your_key
 npm run client
 ```
 
-**Python server ile:**
+**With Python server:**
 
 ```bash
 cd typescript
@@ -106,9 +106,9 @@ export MCP_SERVER_ARGS='["-m", "aviationstack_mcp_server.server"]'
 npm run client
 ```
 
-*Not: Python server için önce `pip install .` ile paketi kurun.*
+*Note: For Python server, first install the package with `pip install .`.*
 
-### 5. Claude Desktop Konfigürasyonu
+### 5. Claude Desktop Configuration
 
 **Python:**
 
@@ -165,18 +165,18 @@ npm test
 
 ## Environment Variables
 
-| Değişken | Açıklama |
-|----------|----------|
-| `AVIATIONSTACK_API_KEY` | **Zorunlu** – API anahtarı |
-| `AVIATIONSTACK_BASE_URL` | API base URL (varsayılan: api.aviationstack.com) |
-| `AVIATIONSTACK_TIMEOUT_SECONDS` | İstek timeout (varsayılan: 10) |
-| `AVIATIONSTACK_MAX_RETRIES` | Retry sayısı (varsayılan: 2) |
-| `MCP_SERVER_COMMAND` | Client: server komutu (`python` veya `node`) |
-| `MCP_SERVER_ARGS` | Client: JSON array, server argümanları |
+| Variable | Description |
+|----------|--------------|
+| `AVIATIONSTACK_API_KEY` | **Required** – API key |
+| `AVIATIONSTACK_BASE_URL` | API base URL (default: api.aviationstack.com) |
+| `AVIATIONSTACK_TIMEOUT_SECONDS` | Request timeout (default: 10) |
+| `AVIATIONSTACK_MAX_RETRIES` | Retry count (default: 2) |
+| `MCP_SERVER_COMMAND` | Client: server command (`python` or `node`) |
+| `MCP_SERVER_ARGS` | Client: JSON array of server arguments |
 
 ---
 
-## Detaylı Dokümantasyon
+## Documentation
 
 - [Python README](./python/README.md)
 - [TypeScript README](./typescript/README.md)
