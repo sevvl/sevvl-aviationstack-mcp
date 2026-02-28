@@ -7,6 +7,7 @@ venv/
 .pytest_cache/
 dist/
 *.egg-info/
+**/.venv/
 
 # Node
 node_modules/
