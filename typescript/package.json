@@ -7,7 +7,9 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "test": "jest"
+    "test": "jest",
+    "client": "node dist/mcp-client.js",
+    "client:tsx": "npx tsx src/mcp-client.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.0",

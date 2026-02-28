@@ -4,11 +4,15 @@ A Model Context Protocol (MCP) server that provides access to global aviation da
 
 ## Features
 
-- `get_flights`: Real-time and historical flight data.
-- `get_airports`: Global airport search.
-- `get_airlines`: Global airline search.
-- `get_routes`: Airline routes data.
-- `get_airplanes`: Aircraft information.
+- **Tools** (aviationstack_* prefix):
+  - `aviationstack_get_flights`: Real-time and historical flight data
+  - `aviationstack_get_airports`: Global airport search
+  - `aviationstack_get_airlines`: Global airline search
+  - `aviationstack_get_routes`: Airline routes data
+  - `aviationstack_get_airplanes`: Aircraft information
+- **Resources**: `aviationstack://docs` documentation
+- **Prompts**: `aviationstack_flight_search` template
+- **Output schema**: Structured response (meta, items, raw)
 
 ## Setup
 
@@ -51,6 +55,24 @@ Add this to your Claude Desktop configuration file:
     }
   }
 }
+```
+
+## MCP Client
+
+Server'a stdio ile bağlanan örnek client:
+
+```bash
+npm run build
+export AVIATIONSTACK_API_KEY=your_key
+npm run client
+```
+
+Python server kullanmak için:
+
+```bash
+export MCP_SERVER_COMMAND=python
+export MCP_SERVER_ARGS='["-m", "aviationstack_mcp_server.server"]'
+npm run client
 ```
 
 ## Testing

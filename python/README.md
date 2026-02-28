@@ -4,11 +4,15 @@ A Model Context Protocol (MCP) server that provides access to global aviation da
 
 ## Features
 
-- `get_flights`: Real-time and historical flight data.
-- `get_airports`: Global airport search.
-- `get_airlines`: Global airline search.
-- `get_routes`: Airline routes data.
-- `get_airplanes`: Aircraft information.
+- **Tools** (aviationstack_* prefix):
+  - `aviationstack_get_flights`: Real-time and historical flight data
+  - `aviationstack_get_airports`: Global airport search
+  - `aviationstack_get_airlines`: Global airline search
+  - `aviationstack_get_routes`: Airline routes data
+  - `aviationstack_get_airplanes`: Aircraft information
+- **Resources**: `aviationstack://docs` documentation
+- **Prompts**: `aviationstack_flight_search` template
+- **Output schema**: Structured response (meta, items, raw)
 
 ## Setup
 
